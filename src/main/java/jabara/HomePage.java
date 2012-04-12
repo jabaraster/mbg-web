@@ -1,7 +1,8 @@
 package jabara;
 
 import java.net.URI;
-import java.net.URISyntaxException;
+import java.sql.Connection;
+import java.sql.DriverManager;
 
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
@@ -29,10 +30,12 @@ public class HomePage extends WebPage {
                     final String username = dbUri.getUserInfo().split(":")[0];
                     final String password = dbUri.getUserInfo().split(":")[1];
                     final String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + dbUri.getPath();
+                    final Connection conn = DriverManager.getConnection(dbUrl, username, password);
+                    final String ret = String.valueOf(conn);
+                    conn.close();
+                    return ret;
 
-                    return username + "\t" + password + "\t" + dbUrl;
-
-                } catch (final URISyntaxException e) {
+                } catch (final Exception e) {
                     return e.getMessage();
                 }
             }
