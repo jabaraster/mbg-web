@@ -1,1 +1,1 @@
-web:    java -cp target/classes:target/dependecies/* Start
+web:    java -cp target/classes:target/dependency/* Start
