@@ -1,7 +1,5 @@
 package jabara;
 
-import java.util.Calendar;
-
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.AbstractReadOnlyModel;
@@ -22,7 +20,7 @@ public class HomePage extends WebPage {
 
             @Override
             public String getObject() {
-                return String.valueOf(Calendar.getInstance().getTime());
+                return System.getenv("DATABASE_URL");
             }
         }));
     }
