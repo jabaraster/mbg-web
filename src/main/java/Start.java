@@ -1,21 +1,28 @@
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.webapp.WebAppContext;
- 
+
+/**
+ * @author じゃばら
+ */
 public class Start {
-    public static void main(String[] args) throws Exception {
+    /**
+     * @param args
+     * @throws Exception
+     */
+    public static void main(final String[] args) throws Exception {
         String webPort = System.getenv("PORT");
         if (webPort == null || webPort.isEmpty()) {
             webPort = "8080";
         }
-        String webappDirLocation = "src/main/webapp/";
- 
-        Server server = new Server(Integer.valueOf(webPort));
-        WebAppContext root = new WebAppContext();
+        final String webappDirLocation = "src/main/webapp/";
+
+        final Server server = new Server(Integer.parseInt(webPort));
+        final WebAppContext root = new WebAppContext();
         root.setContextPath("/");
         root.setDescriptor(webappDirLocation + "/WEB-INF/web.xml");
         root.setResourceBase(webappDirLocation);
         root.setParentLoaderPriority(true);
- 
+
         server.setHandler(root);
         server.start();
         server.join();
