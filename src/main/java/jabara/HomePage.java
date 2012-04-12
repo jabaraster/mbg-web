@@ -1,5 +1,8 @@
 package jabara;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.AbstractReadOnlyModel;
@@ -20,7 +23,18 @@ public class HomePage extends WebPage {
 
             @Override
             public String getObject() {
-                return System.getenv("DATABASE_URL");
+                try {
+                    final URI dbUri = new URI(System.getenv("DATABASE_URL"));
+
+                    final String username = dbUri.getUserInfo().split(":")[0];
+                    final String password = dbUri.getUserInfo().split(":")[1];
+                    final String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + dbUri.getPath();
+
+                    return username + "\t" + password + "\t" + dbUrl;
+
+                } catch (final URISyntaxException e) {
+                    return e.getMessage();
+                }
             }
         }));
     }
