@@ -3,9 +3,13 @@
  */
 package jabara.service;
 
-import java.net.URISyntaxException;
+import jabara.model.TableInfo;
+
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author じゃばら
@@ -14,33 +18,43 @@ public class StorageServiceImpl extends DaoBase implements IStorageService {
     private static final long serialVersionUID = -1168153646058503815L;
 
     public void createTable() {
-        Connection conn = null;
-        try {
-            conn = getConnection();
+        this.db(new IOperation<Void>() {
 
-            final String sql = "" //
-                    + "\n" + "CREATE TABLE M_USER (" //
-                    + "\n" + "  ID BIGINT NOT NULL " //
-                    + "\n" + ", CREATED TIMESTAMP NOT NULL" //
-                    + "\n" + ", UPDATED TIMESTAMP NOT NULL" //
-                    + "\n" + ", USER_ID VARCHAR(20) NOT NULL UNIQUE" //
-                    + "\n" + ", PASSWORD VARCHAR(32) NOT NULL" //
-                    + "\n" + ", PRIMARY KEY (ID))" //
-            ;
-            conn.prepareStatement(sql).execute();
+            public Void operate(final Connection pConnection) throws SQLException {
+                final String sql = "" //
+                        + "\n" + "CREATE TABLE M_USER (" //
+                        + "\n" + "  ID BIGINT NOT NULL " //
+                        + "\n" + ", CREATED TIMESTAMP NOT NULL" //
+                        + "\n" + ", UPDATED TIMESTAMP NOT NULL" //
+                        + "\n" + ", USER_ID VARCHAR(20) NOT NULL UNIQUE" //
+                        + "\n" + ", PASSWORD VARCHAR(32) NOT NULL" //
+                        + "\n" + ", PRIMARY KEY (ID))" //
+                ;
+                pConnection.prepareStatement(sql).execute();
+                return null;
+            }
+        });
+    }
 
-        } catch (final URISyntaxException e) {
-            e.printStackTrace();
-        } catch (final SQLException e) {
-            e.printStackTrace();
-        } finally {
-            if (conn != null) {
+    public List<TableInfo> getTables() {
+        return this.db(new IOperation<List<TableInfo>>() {
+
+            public List<TableInfo> operate(final Connection pConnection) throws SQLException {
+                ResultSet rs = null;
                 try {
-                    conn.close();
-                } catch (final SQLException e) {
-                    //
+                    rs = pConnection.getMetaData().getTables(null, null, null, new String[] { "TABLE" });
+                    final List<TableInfo> ret = new ArrayList<TableInfo>();
+                    while (rs.next()) {
+                        final TableInfo table = new TableInfo();
+                        table.setName(rs.getString("TABLE_NAME"));
+                        ret.add(table);
+                    }
+                    return ret;
+
+                } finally {
+                    close(rs);
                 }
             }
-        }
+        });
     }
 }

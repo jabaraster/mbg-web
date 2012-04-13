@@ -1,5 +1,6 @@
 package jabara.web.page;
 
+import jabara.model.TableInfo;
 import jabara.service.IStorageService;
 import jabara.service.Inject;
 
@@ -9,22 +10,26 @@ import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.list.ListItem;
+import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.AbstractReadOnlyModel;
+import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 /**
  * @author じゃばら
  */
 public class HomePage extends WebPage {
-    private static final long serialVersionUID = 1683421951887735325L;
+    private static final long   serialVersionUID = 1683421951887735325L;
 
     @Inject
-    IStorageService           storageService;
+    IStorageService             storageService;
 
-    private Form<Void>        form;
-    private FeedbackPanel     feedback;
-    private Button            tableCreator;
+    private Form<Void>          form;
+    private FeedbackPanel       feedback;
+    private Button              tableCreator;
+    private ListView<TableInfo> tables;
 
     /**
      * @param parameters
@@ -38,7 +43,24 @@ public class HomePage extends WebPage {
                 return String.valueOf(Calendar.getInstance().getTime());
             }
         }));
+        this.add(getTables());
         this.add(getForm());
+    }
+
+    private ListView<TableInfo> getTables() {
+        if (this.tables == null) {
+            this.tables = new ListView<TableInfo>("tables", this.storageService.getTables()) {
+                private static final long serialVersionUID = 8788770579938059738L;
+
+                @Override
+                protected void populateItem(final ListItem<TableInfo> pItem) {
+                    pItem.setModel(new CompoundPropertyModel<TableInfo>(pItem.getModelObject()));
+
+                    pItem.add(new Label("name"));
+                }
+            };
+        }
+        return this.tables;
     }
 
     private FeedbackPanel getFeedback() {
