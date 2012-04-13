@@ -1,0 +1,59 @@
+<!doctype html>
+<head>
+  <meta charset="UTF-8" />
+  <title wicket:id="title"></title>
+  <wicket:link>
+    <link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:regular,bold' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="style.css" type="text/css" media="screen" title="Stylesheet" />
+  </wicket:link>
+</head>
+
+<body>
+
+  <div>
+    <span wicket:id="month" class="strongest">4</span>月 第<span wicket:id="weekIndex" class="strongest">1</span>週
+  </div>
+
+  <div>
+    <img src="play.png" class="pushable" />
+  </div>
+
+  <div>
+    <div>
+      ただいま<span wicket:id="percent" class="strongest">40</span>%達成。
+      残り<span wicket:id="reminder" class="strongest">6</span>時間。
+    </div>
+    <div>
+      <table class="status">
+        <tr class="header">
+          <td colspan="10">目標ここ！→</td>
+        </tr>
+        <tr class="above">
+          <td class="frame complete left">4/5 17:00-</td>
+          <td class="frame complete">4/6 13:00-</td>
+          <td class="frame complete">4/6 17:00-</td>
+          <td class="frame complete">4/7 8:00-</td>
+          <td class="frame doing">←今ここ！</td>
+          <td class="frame incomplete" />
+          <td class="frame incomplete" />
+          <td class="frame incomplete" />
+          <td class="frame incomplete" />
+          <td class="frame incomplete" />
+        </tr>
+        <tr class="below">
+          <td class="frame complete left" />
+          <td class="frame complete" />
+          <td class="frame complete" />
+          <td class="frame complete" />
+          <td class="frame doing">勉強中...</td>
+          <td class="frame incomplete" />
+          <td class="frame incomplete" />
+          <td class="frame incomplete" />
+          <td class="frame incomplete" />
+          <td class="frame incomplete" />
+        </tr>
+      </table>
+    </div>
+  </div>
+
+</body>

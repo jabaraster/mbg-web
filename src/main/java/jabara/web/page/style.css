@@ -1,0 +1,68 @@
+body, p, li, a { font-family: georgia, times, serif;font-size:13pt;}
+h1, h2, h3 { font-family: 'Yanone Kaffeesatz', arial, serif; }
+body { margin:0;padding:0;}
+body { margin-top : 0; padding-top : 0;}
+a, a:visited, a:hover, a:active {
+	color : #6493D2;
+}
+div {
+  margin: 1em;
+  text-align: center;
+}
+.strongest {
+  padding : 0; margin:0;
+  font-size:72pt;
+  color:#FF5500;
+  font-family: 'Yanone Kaffeesatz', arial, serif;
+}
+
+.pushable {
+  cursor: pointer;
+}
+
+h2 {
+	padding : 0; margin:0;
+	font-size:36pt;
+	color:#FF5500;
+}
+h3 {
+	padding : 0; margin:0;
+	font-size:24pt;
+	color:#092E67;
+}
+
+table.status {
+  border-collapse: collapse;
+}
+
+table.status tr.header > td {
+  border-right: solid 3px #3300ff;
+  text-align: right;
+}
+
+table.status td.frame {
+  width: 80px;
+  height: 30px;
+  color: white;
+  font-size: smaller;
+  text-align: left;
+  border-right: solid 2px #99ff99;
+}
+table.status td.complete {
+  background-color: red;
+}
+table.status td.incomplete {
+  background-color: #aaaaaa;
+}
+table.status td.doing {
+  background-color: #6666ff;
+}
+table.status td.left {
+  border-left: solid 4px #333388;
+}
+table.status > tr.above > td {
+}
+table.status tr.below > td {
+  border-top: solid 4px #333388;
+}
+
