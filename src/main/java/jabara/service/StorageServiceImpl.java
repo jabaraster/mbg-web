@@ -11,6 +11,7 @@ import java.sql.SQLException;
  * @author じゃばら
  */
 public class StorageServiceImpl extends DaoBase implements IStorageService {
+    private static final long serialVersionUID = -1168153646058503815L;
 
     public void createTable() {
         Connection conn = null;

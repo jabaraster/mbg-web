@@ -3,6 +3,7 @@
  */
 package jabara.service;
 
+import java.io.Serializable;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.Connection;
@@ -12,7 +13,8 @@ import java.sql.SQLException;
 /**
  * @author じゃばら
  */
-public abstract class DaoBase {
+public abstract class DaoBase implements Serializable {
+    private static final long serialVersionUID = -654742979492413270L;
 
     /**
      * @return
