@@ -1,7 +1,7 @@
 package jabara.web.page;
 
 import jabara.web.WicketApplication;
-import jabara.web.page.HomePage;
+import jabara.web.page.MaintePage;
 
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
@@ -21,9 +21,9 @@ public class TestHomePage {
     @Test
     public void homepageRendersSuccessfully() {
         // start and render the test page
-        this.tester.startPage(HomePage.class);
+        this.tester.startPage(MaintePage.class);
 
         // assert rendered page class
-        this.tester.assertRenderedPage(HomePage.class);
+        this.tester.assertRenderedPage(MaintePage.class);
     }
 }

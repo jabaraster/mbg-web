@@ -2,7 +2,7 @@ package jabara.web;
 
 import jabara.service.Inject;
 import jabara.service.InjectorImpl;
-import jabara.web.page.HomePage;
+import jabara.web.page.MainPage;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -20,8 +20,8 @@ public class WicketApplication extends WebApplication {
      * @see org.apache.wicket.Application#getHomePage()
      */
     @Override
-    public Class<HomePage> getHomePage() {
-        return HomePage.class;
+    public Class<MainPage> getHomePage() {
+        return MainPage.class;
     }
 
     /**
