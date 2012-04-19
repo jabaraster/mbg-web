@@ -20,7 +20,7 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 /**
  * @author じゃばら
  */
-public class MaintePage extends WebPage {
+public class TableListPage extends WebPage {
     private static final long   serialVersionUID = 1683421951887735325L;
 
     @Inject
@@ -34,7 +34,7 @@ public class MaintePage extends WebPage {
     /**
      * @param parameters
      */
-    public MaintePage(final PageParameters parameters) {
+    public TableListPage(final PageParameters parameters) {
         this.add(new Label("label", new AbstractReadOnlyModel<String>() {
             private static final long serialVersionUID = -1856103619976132317L;
 
@@ -87,7 +87,7 @@ public class MaintePage extends WebPage {
                 @Override
                 public void onSubmit() {
                     try {
-                        MaintePage.this.storageService.createTable();
+                        TableListPage.this.storageService.createTable();
                     } catch (final Exception e) {
                         e.printStackTrace();
                         error(String.valueOf(e));

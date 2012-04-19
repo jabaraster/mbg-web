@@ -3,6 +3,7 @@ package jabara.web;
 import jabara.service.Inject;
 import jabara.service.InjectorImpl;
 import jabara.web.page.MainPage;
+import jabara.web.page.TableListPage;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -33,6 +34,8 @@ public class WicketApplication extends WebApplication {
 
         getRequestCycleSettings().setResponseRequestEncoding("UTF-8");
         getMarkupSettings().setDefaultMarkupEncoding(getRequestCycleSettings().getResponseRequestEncoding());
+
+        mountPage("tables", TableListPage.class);
 
         getComponentInstantiationListeners().add(new IComponentInstantiationListener() {
 
