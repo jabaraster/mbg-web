@@ -10,6 +10,7 @@ import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.StatelessForm;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
@@ -72,7 +73,7 @@ public class TableListPage extends WebPage {
 
     private Form<Void> getForm() {
         if (this.form == null) {
-            this.form = new Form<Void>("form");
+            this.form = new StatelessForm<Void>("form");
             this.form.add(getFeedback());
             this.form.add(getTableCreator());
         }

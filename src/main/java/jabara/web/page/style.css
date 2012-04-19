@@ -31,6 +31,14 @@ h3 {
 	color:#092E67;
 }
 
+
+div.error {
+	border: solid 1px red;
+	background-color: #ffaaaa;
+}
+
+
+
 table.status {
   border-collapse: collapse;
 }
@@ -65,4 +73,3 @@ table.status > tr.above > td {
 table.status tr.below > td {
   border-top: solid 4px #333388;
 }
-

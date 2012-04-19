@@ -4,7 +4,9 @@
 		<meta charset="utf-8" />
 		<title>Wicket on Heroku</title>
 		<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:regular,bold' rel='stylesheet' type='text/css' />
-		<link rel="stylesheet" href="style.css" type="text/css" media="screen" title="Stylesheet" />
+        <wicket:link>
+		  <link rel="stylesheet" href="style.css" type="text/css" media="screen" title="Stylesheet" />
+        </wicket:link>
 	</head>
 	<body>
    
@@ -18,7 +20,7 @@
       
       <form wicket:id="form">
       
-        <div wicket:id="feedback"></div>
+        <div wicket:id="feedback" class="error"></div>
         
         <button wicket:id="tableCreator">テーブル作成</button>
       
