@@ -39,6 +39,7 @@ public class WicketApplication extends WebApplication {
 
         getComponentInstantiationListeners().add(new IComponentInstantiationListener() {
 
+            @Override
             public void onInstantiation(final Component pComponent) {
                 inject(pComponent);
             }

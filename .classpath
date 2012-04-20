@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src/main/java"/>
-	<classpathentry excluding="**/*.java" kind="src" path="src/main/resources"/>
 	<classpathentry kind="src" output="target/test-classes" path="src/test/java"/>
 	<classpathentry excluding="**/*.java" kind="src" output="target/test-classes" path="src/test/resources"/>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry excluding="**/*.java" kind="src" path="src/main/resources"/>
 	<classpathentry kind="var" path="M2_REPO/javax/activation/activation/1.1/activation-1.1.jar" sourcepath="M2_REPO/javax/activation/activation/1.1/activation-1.1-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/javax/mail/mail/1.4.1/mail-1.4.1.jar" sourcepath="M2_REPO/javax/mail/mail/1.4.1/mail-1.4.1-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/javax/servlet/servlet-api/2.5/servlet-api-2.5.jar" sourcepath="M2_REPO/javax/servlet/servlet-api/2.5/servlet-api-2.5-sources.jar"/>
@@ -24,6 +24,7 @@
 	<classpathentry kind="var" path="M2_REPO/org/slf4j/slf4j-api/1.6.1/slf4j-api-1.6.1.jar" sourcepath="M2_REPO/org/slf4j/slf4j-api/1.6.1/slf4j-api-1.6.1-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/slf4j/slf4j-log4j12/1.6.2/slf4j-log4j12-1.6.2.jar" sourcepath="M2_REPO/org/slf4j/slf4j-log4j12/1.6.2/slf4j-log4j12-1.6.2-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/apache/wicket/wicket-core/1.5.5/wicket-core-1.5.5.jar" sourcepath="M2_REPO/org/apache/wicket/wicket-core/1.5.5/wicket-core-1.5.5-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/apache/wicket/wicket-extensions/1.5.5/wicket-extensions-1.5.5.jar" sourcepath="M2_REPO/org/apache/wicket/wicket-extensions/1.5.5/wicket-extensions-1.5.5-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/apache/wicket/wicket-request/1.5.5/wicket-request-1.5.5.jar" sourcepath="M2_REPO/org/apache/wicket/wicket-request/1.5.5/wicket-request-1.5.5-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/apache/wicket/wicket-util/1.5.5/wicket-util-1.5.5.jar" sourcepath="M2_REPO/org/apache/wicket/wicket-util/1.5.5/wicket-util-1.5.5-sources.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>

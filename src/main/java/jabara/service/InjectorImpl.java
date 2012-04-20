@@ -11,6 +11,7 @@ public class InjectorImpl implements IInjector {
     /**
      * @see jabara.service.IInjector#get(java.lang.Class)
      */
+    @Override
     @SuppressWarnings("unchecked")
     public <T> T get(final Class<T> pType) {
         if (!pType.isInterface()) {

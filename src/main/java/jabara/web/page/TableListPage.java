@@ -6,6 +6,9 @@ import jabara.service.Inject;
 
 import java.util.Calendar;
 
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.markup.html.form.AjaxButton;
+import org.apache.wicket.extensions.ajax.markup.html.IndicatingAjaxButton;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
@@ -29,7 +32,7 @@ public class TableListPage extends WebPage {
 
     private Form<Void>          form;
     private FeedbackPanel       feedback;
-    private Button              tableCreator;
+    private AjaxButton          tableCreator;
     private ListView<TableInfo> tables;
 
     /**
@@ -67,6 +70,7 @@ public class TableListPage extends WebPage {
     private FeedbackPanel getFeedback() {
         if (this.feedback == null) {
             this.feedback = new FeedbackPanel("feedback");
+            this.feedback.setOutputMarkupId(true);
         }
         return this.feedback;
     }
@@ -82,18 +86,25 @@ public class TableListPage extends WebPage {
 
     private Button getTableCreator() {
         if (this.tableCreator == null) {
-            this.tableCreator = new Button("tableCreator") {
+            this.tableCreator = new IndicatingAjaxButton("tableCreator") {
                 private static final long serialVersionUID = -7510564570675653434L;
 
                 @Override
-                public void onSubmit() {
+                protected void onSubmit(final AjaxRequestTarget pTarget, final Form<?> pForm) {
                     try {
                         TableListPage.this.storageService.createTable();
                     } catch (final Exception e) {
                         e.printStackTrace();
                         error(String.valueOf(e));
                     }
+                    pTarget.add(getFeedback());
                 }
+
+                @Override
+                protected void onError(final AjaxRequestTarget pTarget, final Form<?> pForm) {
+                    pTarget.add(getFeedback());
+                }
+
             };
         }
         return this.tableCreator;
