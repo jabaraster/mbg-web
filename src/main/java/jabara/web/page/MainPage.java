@@ -16,6 +16,7 @@ public class MainPage extends WebPage {
      * 
      */
     public MainPage() {
+        this.add(new Label("dbUrl", System.getenv("DATABASE_URL")));
         this.add(new Label("title", "じゃばらのお勉強"));
         this.add(new Label("month", "4"));
         this.add(new Label("weekIndex", "1"));
