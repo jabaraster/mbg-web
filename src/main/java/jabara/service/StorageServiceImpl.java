@@ -20,11 +20,9 @@ public class StorageServiceImpl extends DaoBase implements IStorageService {
     /**
      * @see jabara.service.IStorageService#createTable()
      */
-    @Override
     public void createTable() {
         this.db(new IOperation<Void>() {
 
-            @Override
             public Void operate(final Connection pConnection) throws SQLException {
                 final String sql = "" //
                         + "\n" + "CREATE TABLE M_USER (" //
@@ -44,11 +42,9 @@ public class StorageServiceImpl extends DaoBase implements IStorageService {
     /**
      * @see jabara.service.IStorageService#getTables()
      */
-    @Override
     public List<TableInfo> getTables() {
         return this.db(new IOperation<List<TableInfo>>() {
 
-            @Override
             public List<TableInfo> operate(final Connection pConnection) throws SQLException {
                 ResultSet rs = null;
                 try {

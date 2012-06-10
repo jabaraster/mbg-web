@@ -16,7 +16,14 @@ public class MainPage extends WebPage {
      * 
      */
     public MainPage() {
-        this.add(new Label("dbUrl", System.getenv("DATABASE_URL")));
+        String m = null;
+        try {
+            m = Class.forName(" javax.persistence.EntityManagerFactory").getName();
+        } catch (final ClassNotFoundException e) {
+            m = e.getMessage();
+        }
+
+        this.add(new Label("dbUrl", m));
         this.add(new Label("title", "じゃばらのお勉強"));
         this.add(new Label("month", "4"));
         this.add(new Label("weekIndex", "1"));
