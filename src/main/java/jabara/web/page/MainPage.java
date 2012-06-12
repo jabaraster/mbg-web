@@ -23,7 +23,7 @@ public class MainPage extends WebPage {
 
         final EntityManager em = EntityManagerHolder.get();
 
-        this.add(new Label("dbUrl", em.toString()));
+        this.add(new Label("dbUrl", em.getCriteriaBuilder().toString()));
         this.add(new Label("title", "じゃばらのお勉強"));
         this.add(new Label("month", "4"));
         this.add(new Label("weekIndex", "1"));
