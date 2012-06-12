@@ -12,7 +12,7 @@ public class Start {
     public static void main(final String[] args) throws Exception {
         String webPort = System.getenv("PORT");
         if (webPort == null || webPort.isEmpty()) {
-            webPort = "8080";
+            webPort = "8081";
         }
         final String webappDirLocation = "src/main/webapp/";
 
