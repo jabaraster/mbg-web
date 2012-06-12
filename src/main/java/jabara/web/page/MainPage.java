@@ -3,13 +3,8 @@
  */
 package jabara.web.page;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Properties;
+import jabara.entity.Customer;
+import jabara.service.CustomerService;
 
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
@@ -27,26 +22,13 @@ public class MainPage extends WebPage {
      */
     public MainPage() {
 
-        final Properties props = System.getProperties();
-
-        System.out.println(props);
-
-        final List<Map.Entry<Object, Object>> l = new ArrayList<Map.Entry<Object, Object>>(props.entrySet());
-        Collections.sort(l, new Comparator<Map.Entry<Object, Object>>() {
-
-            @Override
-            public int compare(final Entry<Object, Object> o0, final Entry<Object, Object> o1) {
-                return String.valueOf(o0.getKey()).compareTo(String.valueOf(o1.getKey()));
-            }
-        });
-
-        this.add(new ListView<Map.Entry<Object, Object>>("systemProperties", l) {
+        this.add(new ListView<Customer>("systemProperties", new CustomerService().getAll()) {
             private static final long serialVersionUID = 2808532203362435628L;
 
             @Override
-            protected void populateItem(final ListItem<Entry<Object, Object>> pItem) {
-                pItem.add(new Label("key", String.valueOf(pItem.getModelObject().getKey())));
-                pItem.add(new Label("value", String.valueOf(pItem.getModelObject().getValue())));
+            protected void populateItem(final ListItem<Customer> pItem) {
+                pItem.add(new Label("key", String.valueOf(pItem.getModelObject().getId())));
+                pItem.add(new Label("value", String.valueOf(pItem.getModelObject().getName())));
             }
         });
 

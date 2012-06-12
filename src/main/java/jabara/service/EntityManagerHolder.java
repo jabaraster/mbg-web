@@ -12,6 +12,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import org.postgresql.Driver;
+
 /**
  * @author jabaraster
  */
@@ -35,7 +37,11 @@ public class EntityManagerHolder {
 
     private static Map<String, String> createDbProperties() {
         try {
-            final URI dbUri = new URI(getDbUrl());
+            final String u = System.getenv("DATABASE_URL");
+            if (u == null) {
+                return createDbProperties2();
+            }
+            final URI dbUri = new URI(u);
 
             final String username = dbUri.getUserInfo().split(":")[0];
             final String password = dbUri.getUserInfo().split(":")[1];
@@ -57,15 +63,11 @@ public class EntityManagerHolder {
     private static Map<String, String> createDbProperties2() {
         final Map<String, String> ret = new HashMap<String, String>();
 
-        ret.put("javax.persistence.driver", "org.apache.derby.jdbc.ClientDriver");
-        ret.put("javax.persistence.jdbc.url", "jdbc:derby://localhost/app;create=true");
-        ret.put("javax.persistence.jdbc.user", "APP");
-        ret.put("javax.persistence.jdbc.password", "APP");
+        ret.put("javax.persistence.driver", Driver.class.getName());
+        ret.put("javax.persistence.jdbc.url", "jdbc:postgresql://localhost:5432/postgres");
+        ret.put("javax.persistence.jdbc.user", "jabaraster");
+        ret.put("javax.persistence.jdbc.password", "w9tau9Em");
 
         return ret;
-    }
-
-    private static String getDbUrl() {
-        return System.getenv("DATABASE_URL");
     }
 }
