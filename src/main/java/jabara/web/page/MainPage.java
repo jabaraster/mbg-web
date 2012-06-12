@@ -5,6 +5,8 @@ package jabara.web.page;
 
 import jabara.service.EntityManagerHolder;
 
+import javax.persistence.EntityManager;
+
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 
@@ -19,7 +21,9 @@ public class MainPage extends WebPage {
      */
     public MainPage() {
 
-        this.add(new Label("dbUrl", EntityManagerHolder.get().toString()));
+        final EntityManager em = EntityManagerHolder.get();
+
+        this.add(new Label("dbUrl", em.toString()));
         this.add(new Label("title", "じゃばらのお勉強"));
         this.add(new Label("month", "4"));
         this.add(new Label("weekIndex", "1"));
