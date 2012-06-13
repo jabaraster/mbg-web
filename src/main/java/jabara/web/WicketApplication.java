@@ -1,16 +1,22 @@
 package jabara.web;
 
-import jabara.service.Inject;
-import jabara.service.InjectorImpl;
+import jabara.service.DaoBase;
+import jabara.service.Transactional;
 import jabara.web.page.MainPage;
-import jabara.web.page.TableListPage;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
+import java.lang.reflect.Method;
 
-import org.apache.wicket.Component;
-import org.apache.wicket.application.IComponentInstantiationListener;
+import javax.persistence.EntityManager;
+
+import org.aopalliance.intercept.MethodInterceptor;
+import org.aopalliance.intercept.MethodInvocation;
+import org.apache.wicket.guice.GuiceComponentInjector;
 import org.apache.wicket.protocol.http.WebApplication;
+
+import com.google.inject.AbstractModule;
+import com.google.inject.Module;
+import com.google.inject.matcher.Matcher;
+import com.google.inject.matcher.Matchers;
 
 /**
  * Application object for your web application. If you want to run this application without deploying, run the Start class.
@@ -34,37 +40,47 @@ public class WicketApplication extends WebApplication {
         getRequestCycleSettings().setResponseRequestEncoding("UTF-8");
         getMarkupSettings().setDefaultMarkupEncoding(getRequestCycleSettings().getResponseRequestEncoding());
 
-        mountPage("tables", TableListPage.class);
+        final Module module = new AbstractModule() {
 
-        getComponentInstantiationListeners().add(new IComponentInstantiationListener() {
+            @Override
+            protected void configure() {
+                final Matcher<? super Class<?>> classMatcher = Matchers.subclassesOf(DaoBase.class);
+                final Matcher<? super Method> methodMatcher = Matchers.annotatedWith(Transactional.class);
+                final MethodInterceptor interceptor = new MethodInterceptor() {
 
-            public void onInstantiation(final Component pComponent) {
-                inject(pComponent);
-            }
-        });
-    }
+                    @Override
+                    public Object invoke(final MethodInvocation pInvocation) throws Throwable {
+                        EntityManager em = DaoBase._emHolder.get();
+                        final boolean startTxThisFrame = em == null;
+                        if (em == null) {
+                            em = DaoBase._emf.createEntityManager();
+                            DaoBase._emHolder.set(em);
+                            em.getTransaction().begin();
+                        }
+                        try {
+                            final Object ret = pInvocation.proceed();
+                            if (startTxThisFrame) {
+                                em.getTransaction().commit();
+                            }
+                            return ret;
 
-    private void inject(final Component pComponent) {
-        for (final Field field : pComponent.getClass().getDeclaredFields()) {
-            if (!field.isAnnotationPresent(Inject.class)) {
-                continue;
-            }
-            if (Modifier.isStatic(field.getModifiers())) {
-                continue;
-            }
-            if (!field.getType().isInterface()) {
-                continue;
-            }
+                        } catch (final Throwable e) {
+                            if (startTxThisFrame) {
+                                em.getTransaction().rollback();
+                            }
+                            throw e;
 
-            field.setAccessible(true);
-            try {
-                field.set(pComponent, new InjectorImpl().get(field.getType()));
-            } catch (final IllegalArgumentException e) {
-                e.printStackTrace();
-            } catch (final IllegalAccessException e) {
-                e.printStackTrace();
+                        } finally {
+                            if (startTxThisFrame) {
+                                DaoBase._emHolder.set(null);
+                            }
+                        }
+                    }
+                };
+                this.bindInterceptor(classMatcher, methodMatcher, interceptor);
             }
-        }
+        };
+        getComponentInstantiationListeners().add(new GuiceComponentInjector(this, module));
     }
 
 }

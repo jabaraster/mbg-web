@@ -4,12 +4,14 @@
 package jabara.web.page;
 
 import jabara.entity.Customer;
-import jabara.service.CustomerService;
+import jabara.service.ICustomerService;
 
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
+
+import com.google.inject.Inject;
 
 /**
  * @author じゃばら
@@ -17,12 +19,15 @@ import org.apache.wicket.markup.html.list.ListView;
 public class MainPage extends WebPage {
     private static final long serialVersionUID = -2386525346155477046L;
 
+    @Inject
+    ICustomerService          customerService;
+
     /**
      * 
      */
     public MainPage() {
 
-        this.add(new ListView<Customer>("systemProperties", new CustomerService().getAll()) {
+        this.add(new ListView<Customer>("systemProperties", this.customerService.getAll()) {
             private static final long serialVersionUID = 2808532203362435628L;
 
             @Override
