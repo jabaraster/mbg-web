@@ -17,13 +17,6 @@ public class Customer extends EntityBase<Customer> {
     protected String          name;
 
     /**
-     * @return the id
-     */
-    public Long getId() {
-        return this.id;
-    }
-
-    /**
      * @return the name
      */
     public String getName() {

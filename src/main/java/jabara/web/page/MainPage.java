@@ -38,6 +38,7 @@ public class MainPage extends WebPage {
     /**
      * 
      */
+    @SuppressWarnings("nls")
     public MainPage() {
 
         this.add(getImageForm());
@@ -62,14 +63,14 @@ public class MainPage extends WebPage {
 
     private FileUploadField getFile() {
         if (this.file == null) {
-            this.file = new FileUploadField("file");
+            this.file = new FileUploadField("file"); //$NON-NLS-1$
         }
         return this.file;
     }
 
     private Form<Object> getImageForm() {
         if (this.imageForm == null) {
-            this.imageForm = new Form<Object>("imageForm");
+            this.imageForm = new Form<Object>("imageForm"); //$NON-NLS-1$
             this.imageForm.setMultiPart(true);
             this.imageForm.add(getSubmit());
             this.imageForm.add(getFile());
@@ -79,9 +80,10 @@ public class MainPage extends WebPage {
 
     private Button getSubmit() {
         if (this.submit == null) {
-            this.submit = new Button("submit") {
+            this.submit = new Button("submit") { //$NON-NLS-1$
                 private static final long serialVersionUID = -2902863312599179464L;
 
+                @SuppressWarnings("synthetic-access")
                 @Override
                 public void onSubmit() {
                     try {

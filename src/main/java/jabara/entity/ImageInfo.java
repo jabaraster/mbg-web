@@ -23,13 +23,15 @@ import org.apache.wicket.util.io.IOUtils;
 public class ImageInfo extends EntityBase<ImageInfo> {
     private static final long serialVersionUID = 8058054358608045275L;
 
+    /**
+     * 
+     */
     @Column(nullable = false)
     @Lob
     protected byte[]          imageData;
 
     /**
-     * @return
-     * @throws IOException
+     * @return 画像情報.
      */
     public InputStream getImageData() {
         try {
@@ -41,7 +43,6 @@ public class ImageInfo extends EntityBase<ImageInfo> {
 
     /**
      * @param pData
-     * @throws IOException
      */
     public void setImageData(final InputStream pData) {
         try {

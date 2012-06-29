@@ -21,21 +21,28 @@ import org.postgresql.Driver;
 public abstract class DaoBase implements Serializable {
     private static final long                      serialVersionUID = -654742979492413270L;
 
-    public static final EntityManagerFactory       _emf             = Persistence.createEntityManagerFactory("pu", createDbProperties());
+    /**
+     * 
+     */
+    public static final EntityManagerFactory       _emf             = Persistence.createEntityManagerFactory("pu", createDbProperties()); //$NON-NLS-1$
 
+    /**
+     * 
+     */
     public static final ThreadLocal<EntityManager> _emHolder        = new ThreadLocal<EntityManager>();
 
     /**
-     * @return
+     * @return {@link EntityManager}.
      */
-    protected EntityManager getEntityManager() {
+    protected static EntityManager getEntityManager() {
         final EntityManager ret = _emHolder.get();
         if (ret == null) {
-            throw new IllegalStateException("current thread is not in tx.");
+            throw new IllegalStateException("current thread is not in tx."); //$NON-NLS-1$
         }
         return ret;
     }
 
+    @SuppressWarnings("nls")
     private static Map<String, String> createDbProperties() {
         try {
             final String u = System.getenv("DATABASE_URL");
@@ -61,13 +68,14 @@ public abstract class DaoBase implements Serializable {
         }
     }
 
+    @SuppressWarnings("nls")
     private static Map<String, String> createDbProperties2() {
         final Map<String, String> ret = new HashMap<String, String>();
 
         ret.put("javax.persistence.driver", Driver.class.getName());
         ret.put("javax.persistence.jdbc.url", "jdbc:postgresql://localhost:5432/postgres");
-        ret.put("javax.persistence.jdbc.user", "jabaraster");
-        ret.put("javax.persistence.jdbc.password", "w9tau9Em");
+        ret.put("javax.persistence.jdbc.user", "postgres");
+        ret.put("javax.persistence.jdbc.password", "postgres");
 
         return ret;
     }

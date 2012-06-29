@@ -72,7 +72,7 @@ public abstract class EntityBase<E extends EntityBase<E>> implements IEntity, Cl
     }
 
     /**
-     * @see jp.co.city.memolink.entity.IEntity#getCreated()
+     * @see jabara.entity.IEntity#getCreated()
      */
     @Override
     public Date getCreated() {
@@ -80,7 +80,7 @@ public abstract class EntityBase<E extends EntityBase<E>> implements IEntity, Cl
     }
 
     /**
-     * @see jp.co.city.memolink.entity.IEntity#getId()
+     * @see jabara.entity.IEntity#getId()
      */
     @Override
     public Long getId() {
@@ -88,7 +88,7 @@ public abstract class EntityBase<E extends EntityBase<E>> implements IEntity, Cl
     }
 
     /**
-     * @see jp.co.city.memolink.entity.IEntity#getUpdated()
+     * @see jabara.entity.IEntity#getUpdated()
      */
     @Override
     public Date getUpdated() {

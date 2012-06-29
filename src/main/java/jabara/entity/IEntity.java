@@ -11,17 +11,17 @@ import java.util.Date;
 public interface IEntity {
 
     /**
-     * @return
+     * @return 生成日.
      */
     Date getCreated();
 
     /**
-     * @return
+     * @return ID値. 永続化前の場合はnull.
      */
     Long getId();
 
     /**
-     * @return
+     * @return 最終更新日.
      */
     Date getUpdated();
 }

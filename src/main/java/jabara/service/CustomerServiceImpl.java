@@ -13,16 +13,16 @@ import javax.persistence.criteria.CriteriaQuery;
 /**
  * @author jabaraster
  */
-public class CustomerService extends DaoBase implements ICustomerService {
+public class CustomerServiceImpl extends DaoBase implements ICustomerService {
     private static final long serialVersionUID = 7410936175574342856L;
 
     /**
-     * @return
+     * @see jabara.service.ICustomerService#getAll()
      */
     @Override
     @Transactional
     public List<Customer> getAll() {
-        final EntityManager em = this.getEntityManager();
+        final EntityManager em = getEntityManager();
         final CriteriaQuery<Customer> query = em.getCriteriaBuilder().createQuery(Customer.class);
         query.from(Customer.class);
         return em.createQuery(query).getResultList();

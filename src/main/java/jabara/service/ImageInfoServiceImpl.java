@@ -6,12 +6,28 @@ package jabara.service;
 import jabara.entity.ImageInfo;
 
 import java.io.InputStream;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.criteria.CriteriaQuery;
 
 /**
  * @author jabaraster
  */
 public class ImageInfoServiceImpl extends DaoBase implements IImageInfoService {
     private static final long serialVersionUID = -4167077980061372916L;
+
+    /**
+     * @see jabara.service.IImageInfoService#getAll()
+     */
+    @Override
+    public List<ImageInfo> getAll() {
+        final EntityManager em = getEntityManager();
+        final CriteriaQuery<ImageInfo> query = em.getCriteriaBuilder().createQuery(ImageInfo.class);
+        query.from(ImageInfo.class);
+
+        return em.createQuery(query).getResultList();
+    }
 
     /**
      * @see jabara.service.IImageInfoService#insert(java.io.InputStream)
@@ -22,7 +38,7 @@ public class ImageInfoServiceImpl extends DaoBase implements IImageInfoService {
         final ImageInfo ii = new ImageInfo();
         ii.setImageData(pIn);
 
-        this.getEntityManager().persist(ii);
+        getEntityManager().persist(ii);
     }
 
 }

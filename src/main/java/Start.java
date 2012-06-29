@@ -9,6 +9,7 @@ public class Start {
      * @param args
      * @throws Exception
      */
+    @SuppressWarnings("nls")
     public static void main(final String[] args) throws Exception {
         String webPort = System.getenv("PORT");
         if (webPort == null || webPort.isEmpty()) {

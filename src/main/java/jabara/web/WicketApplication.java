@@ -37,7 +37,7 @@ public class WicketApplication extends WebApplication {
     public void init() {
         super.init();
 
-        getRequestCycleSettings().setResponseRequestEncoding("UTF-8");
+        getRequestCycleSettings().setResponseRequestEncoding("UTF-8"); //$NON-NLS-1$
         getMarkupSettings().setDefaultMarkupEncoding(getRequestCycleSettings().getResponseRequestEncoding());
 
         final Module module = new AbstractModule() {

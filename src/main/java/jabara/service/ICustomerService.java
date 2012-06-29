@@ -12,11 +12,11 @@ import com.google.inject.ImplementedBy;
 /**
  * @author jabaraster
  */
-@ImplementedBy(CustomerService.class)
+@ImplementedBy(CustomerServiceImpl.class)
 public interface ICustomerService {
 
     /**
-     * @return
+     * @return 全データ.
      */
     List<Customer> getAll();
 }

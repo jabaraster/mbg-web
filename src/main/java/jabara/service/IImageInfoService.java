@@ -3,7 +3,10 @@
  */
 package jabara.service;
 
+import jabara.entity.ImageInfo;
+
 import java.io.InputStream;
+import java.util.List;
 
 import com.google.inject.ImplementedBy;
 
@@ -12,6 +15,11 @@ import com.google.inject.ImplementedBy;
  */
 @ImplementedBy(ImageInfoServiceImpl.class)
 public interface IImageInfoService {
+
+    /**
+     * @return 全データ.
+     */
+    List<ImageInfo> getAll();
 
     /**
      * @param pIn
