@@ -14,6 +14,7 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.upload.FileUploadField;
+import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 
@@ -59,6 +60,8 @@ public class MainPage extends WebPage {
         this.add(new Label("weekIndex", "1"));
         this.add(new Label("percent", "40"));
         this.add(new Label("reminder", "6"));
+
+        this.add(new BookmarkablePageLink<Void>("goImageInfo", ImageInfoPage.class));
     }
 
     private FileUploadField getFile() {

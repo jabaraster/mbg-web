@@ -23,6 +23,7 @@ public interface IImageInfoService {
 
     /**
      * @param pIn
+     * @return INSERTした画像情報.
      */
-    void insert(InputStream pIn);
+    ImageInfo insert(InputStream pIn);
 }

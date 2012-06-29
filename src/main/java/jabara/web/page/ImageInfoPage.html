@@ -1,0 +1,30 @@
+<!doctype html>
+<head>
+  <meta charset="UTF-8" />
+  <title>画像情報</title>
+  <wicket:link>
+    <link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:regular,bold' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="ImageInfoPage.css" type="text/css" media="screen" title="Stylesheet" />
+    <link rel="stylesheet" href="style.css" type="text/css" media="screen" title="Stylesheet" />
+  </wicket:link>
+</head>
+
+<body>
+
+  <form wicket:id="imageForm">
+    <ul>
+      <li><input type="file" wicket:id="file" /></li>
+      <li><input type="submit" wicket:id="submit" /></li>
+    </ul>
+  </form>
+
+  <table>
+    <thead></thead>
+    <tbody>
+      <tr wicket:id="imageInfoList">
+        <td><img wicket:id="image"/></td>
+      </tr>
+    </tbody>
+  </table>
+
+</body>

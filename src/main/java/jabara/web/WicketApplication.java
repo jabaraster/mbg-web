@@ -2,6 +2,7 @@ package jabara.web;
 
 import jabara.service.DaoBase;
 import jabara.service.Transactional;
+import jabara.web.page.ImageInfoPage;
 import jabara.web.page.MainPage;
 
 import java.lang.reflect.Method;
@@ -39,6 +40,8 @@ public class WicketApplication extends WebApplication {
 
         getRequestCycleSettings().setResponseRequestEncoding("UTF-8"); //$NON-NLS-1$
         getMarkupSettings().setDefaultMarkupEncoding(getRequestCycleSettings().getResponseRequestEncoding());
+
+        mountPage("imageInfo", ImageInfoPage.class); //$NON-NLS-1$
 
         final Module module = new AbstractModule() {
 

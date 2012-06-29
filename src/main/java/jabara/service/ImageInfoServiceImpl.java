@@ -21,6 +21,7 @@ public class ImageInfoServiceImpl extends DaoBase implements IImageInfoService {
      * @see jabara.service.IImageInfoService#getAll()
      */
     @Override
+    @Transactional
     public List<ImageInfo> getAll() {
         final EntityManager em = getEntityManager();
         final CriteriaQuery<ImageInfo> query = em.getCriteriaBuilder().createQuery(ImageInfo.class);
@@ -34,11 +35,13 @@ public class ImageInfoServiceImpl extends DaoBase implements IImageInfoService {
      */
     @Override
     @Transactional
-    public void insert(final InputStream pIn) {
+    public ImageInfo insert(final InputStream pIn) {
         final ImageInfo ii = new ImageInfo();
         ii.setImageData(pIn);
 
         getEntityManager().persist(ii);
+
+        return ii;
     }
 
 }
