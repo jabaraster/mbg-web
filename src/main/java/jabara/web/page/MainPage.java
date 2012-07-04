@@ -54,7 +54,11 @@ public class MainPage extends WebPage {
             }
         });
 
-        this.add(new Label("dbUrl", ""));
+        try {
+            this.add(new Label("dbUrl", String.valueOf(Class.forName(" javax.servlet.annotation.WebServlet"))));
+        } catch (final Exception e) {
+            this.add(new Label("dbUrl", e.getMessage()));
+        }
         this.add(new Label("title", "じゃばらのお勉強"));
         this.add(new Label("month", "4"));
         this.add(new Label("weekIndex", "1"));
