@@ -19,7 +19,6 @@ public class CustomerServiceImpl extends DaoBase implements ICustomerService {
     /**
      * @see jabara.service.ICustomerService#getAll()
      */
-    @Override
     @Transactional
     public List<Customer> getAll() {
         final EntityManager em = getEntityManager();
