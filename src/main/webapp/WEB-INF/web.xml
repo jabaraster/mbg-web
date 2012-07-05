@@ -27,6 +27,6 @@
 
 	<filter-mapping>
 		<filter-name>wicket.wicket-heroku</filter-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>/ui/*</url-pattern>
 	</filter-mapping>
 </web-app>
