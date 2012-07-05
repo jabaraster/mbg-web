@@ -20,7 +20,6 @@ public class ImageInfoServiceImpl extends DaoBase implements IImageInfoService {
     /**
      * @see jabara.service.IImageInfoService#getAll()
      */
-    @Override
     @Transactional
     public List<ImageInfo> getAll() {
         final EntityManager em = getEntityManager();
@@ -33,7 +32,6 @@ public class ImageInfoServiceImpl extends DaoBase implements IImageInfoService {
     /**
      * @see jabara.service.IImageInfoService#insert(java.io.InputStream)
      */
-    @Override
     @Transactional
     public ImageInfo insert(final InputStream pIn) {
         final ImageInfo ii = new ImageInfo();

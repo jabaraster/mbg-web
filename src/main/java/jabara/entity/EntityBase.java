@@ -74,7 +74,6 @@ public abstract class EntityBase<E extends EntityBase<E>> implements IEntity, Cl
     /**
      * @see jabara.entity.IEntity#getCreated()
      */
-    @Override
     public Date getCreated() {
         return this.created == null ? null : new Date(this.created.getTime());
     }
@@ -82,7 +81,6 @@ public abstract class EntityBase<E extends EntityBase<E>> implements IEntity, Cl
     /**
      * @see jabara.entity.IEntity#getId()
      */
-    @Override
     public Long getId() {
         return this.id;
     }
@@ -90,7 +88,6 @@ public abstract class EntityBase<E extends EntityBase<E>> implements IEntity, Cl
     /**
      * @see jabara.entity.IEntity#getUpdated()
      */
-    @Override
     public Date getUpdated() {
         return this.updated == null ? null : new Date(this.updated.getTime());
     }

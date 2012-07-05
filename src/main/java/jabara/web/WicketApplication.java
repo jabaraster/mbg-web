@@ -51,7 +51,6 @@ public class WicketApplication extends WebApplication {
                 final Matcher<? super Method> methodMatcher = Matchers.annotatedWith(Transactional.class);
                 final MethodInterceptor interceptor = new MethodInterceptor() {
 
-                    @Override
                     public Object invoke(final MethodInvocation pInvocation) throws Throwable {
                         EntityManager em = DaoBase._emHolder.get();
                         final boolean startTxThisFrame = em == null;
