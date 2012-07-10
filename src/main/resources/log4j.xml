@@ -27,7 +27,9 @@
     <level value="debug" />
     <appender-ref ref="stdout" />
   </logger>
-
+  <root>
+    <appender-ref ref="stdout" />
+  </root>
 
 <!--
   <logger name="SQL_LOG" >

@@ -16,6 +16,11 @@
 		The value might be either "development" (reloading when templates change) or 
 		"deployment". If no configuration is found, "development" is the default. -->
 
+  <listener>
+    <listener-class>jabara.web.WebInitializer</listener-class>
+  </listener>
+
+<!--
 	<filter>
 		<filter-name>wicket.wicket-heroku</filter-name>
 		<filter-class>org.apache.wicket.protocol.http.WicketFilter</filter-class>
@@ -24,29 +29,30 @@
 			<param-value>jabara.web.WicketApplication</param-value>
 		</init-param>
 	</filter>
-
 	<filter-mapping>
 		<filter-name>wicket.wicket-heroku</filter-name>
 		<url-pattern>/ui/*</url-pattern>
 	</filter-mapping>
 
 	<servlet>
-	  <servlet-name>upload</servlet-name>
-	  <servlet-class>jabara.web.UploadServlet</servlet-class>
-	</servlet>
-	<servlet>
 	  <servlet-name>jspServlet</servlet-name>
 	  <servlet-class>org.apache.jasper.servlet.JspServlet</servlet-class>
 	</servlet>
+
+	<servlet>
+	  <servlet-name>upload</servlet-name>
+	  <servlet-class>jabara.web.UploadServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	  <servlet-name>upload</servlet-name>
+	  <url-pattern>/rest/upload</url-pattern>
+	</servlet-mapping>
 
     <servlet-mapping>
       <servlet-name>jspServlet</servlet-name>
       <url-pattern>*.jsp</url-pattern>
     </servlet-mapping>
+-->
 
-	<servlet-mapping>
-	  <servlet-name>upload</servlet-name>
-	  <url-pattern>/rest/upload</url-pattern>
-	</servlet-mapping>
 
 </web-app>

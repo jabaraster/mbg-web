@@ -27,8 +27,7 @@ public class UploadServlet extends HttpServlet {
      * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
      */
     @Override
-    protected void doPost(final HttpServletRequest pRequest, @SuppressWarnings("unused") final HttpServletResponse pResponse)
-            throws ServletException, IOException {
+    protected void doPost(final HttpServletRequest pRequest, final HttpServletResponse pResponse) throws ServletException, IOException {
         pRequest.setAttribute("message", pRequest.getPart("text")); //$NON-NLS-1$//$NON-NLS-2$
         forwardToUploadPage(pRequest, pResponse);
     }
