@@ -18,7 +18,7 @@
 		</license>
 	</licenses>
 	<properties>
-		<wicket.version>1.5.7</wicket.version>
+		<wicket.version>7.17.0</wicket.version>
 		<jetty.version>8.1.4.v20120524</jetty.version>
 	</properties>
 	<dependencies>
